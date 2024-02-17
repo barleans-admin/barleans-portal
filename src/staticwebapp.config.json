@@ -1,0 +1,20 @@
+{ 
+    "auth": {
+        "rolesSource": "/api/GetRoles",
+        "identityProviders": {
+            "azureActiveDirectory": {
+                "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+                "registration": {
+                    "openIdIssuer": "https://login.microsoftonline.com/540bb0cf-6150-401d-8dd9-da87804d1d0d",
+                    "clientIdSettingName": "AAD_CLIENT_ID",
+                    "clientSecretSettingName": "AAD_CLIENT_SECRET"
+                },
+                "login": {
+                    "loginParameters": [
+                        "resource=https://graph.microsoft.com"
+                    ]
+                }
+            }
+        }
+    }
+}
