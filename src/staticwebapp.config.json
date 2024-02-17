@@ -1,4 +1,14 @@
-{ 
+{
+    "routes": [
+        {
+            "route": "/admin/*",
+            "allowedRoles": [ "admin" ]
+        },
+        {
+            "route": "/authenticated/*",
+            "allowedRoles": [ "authenticated" ]
+        }
+    ],
     "auth": {
         "rolesSource": "/api/GetRoles",
         "identityProviders": {
@@ -16,5 +26,8 @@
                 }
             }
         }
+    },
+    "globalHeaders": {
+        "Cache-Control": "no-cache"
     }
 }
