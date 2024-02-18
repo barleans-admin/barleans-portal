@@ -9,7 +9,8 @@ body {
 }
 
 .landing-container {
-    margin: 10em;
+    margin: auto;
+    margin-top: 5em;
 }
 
 .landing-header {
@@ -23,6 +24,7 @@ body {
 }
 
 .login-link-text {
+    display: inline-block;
     transition: transform 1s;
 }
 
