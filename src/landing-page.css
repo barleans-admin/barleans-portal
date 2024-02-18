@@ -3,24 +3,21 @@ body {
     height: auto;
     margin: auto;
 
+    font-size: 6em;
+
     display: flex;
     align-items: center; /* vertical */
     justify-content: center; /* horizontal */
 }
 
 .landing-container {
-    margin: 20px;
-}
-
-.landing-header {
-    font-size: 5em;
+    margin: 4em;
+    margin-top: 3em
 }
 
 .login-link {
-    margin-left: 3em;
-    font-size: 3em;
-    text-decoration: none;
     color: black;
+    text-decoration: none;
 }
 
 .login-link-text {
@@ -29,5 +26,6 @@ body {
 }
 
 .login-link:hover .login-link-text {
+    color: red;
     transform: translate(40px, 0px);
 }
