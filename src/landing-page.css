@@ -25,13 +25,9 @@ body {
 
 .login-link-text {
     display: inline-block;
-    transition: transform 1s;
+    transition: transform 0.5s;
 }
 
 .login-link:hover .login-link-text {
-    transform: translateX(80px);
-}
-
-.login-link:active .login-link-text {
-    transform: translateX(200vw);
+    transform: translateX(40px);
 }
