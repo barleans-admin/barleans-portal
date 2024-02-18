@@ -6,9 +6,9 @@ function renderSiteTemplate() {
     if(navElement != null) {
         console.log("Nav element is not null");
         navElement.innerHTML = `
-            <a href="/home/>Home</a>
-            <a href="/make-a-request/>Make a Request</a>
-            <a href="/my-requests/>My Requests</a>
+            <a href="/home/">Home</a>
+            <a href="/make-a-request/">Make a Request</a>
+            <a href="/my-requests/">My Requests</a>
         `;
     }
 }

@@ -16,6 +16,10 @@ html, body {
   background-color: white;
 }
 
+body {
+  width: 60vw;
+}
+
 nav {
   display: flex;
   gap: 24px;
@@ -23,5 +27,7 @@ nav {
 
 nav a {
   text-transform: uppercase;
+  text-decoration: none;
+  color: black;
   font-weight: 600;
 }
