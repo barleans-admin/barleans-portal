@@ -1,18 +1,18 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <title>Barlean's Portal</title>
-    <link href="styles.css" rel="stylesheet" type="text/css">
+    <title>Login | Barlean's Portal</title>
     <link href="landing-page.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div class="landing-container">
-      <h1 class="landing-header">Welcome to the Barlean's Portal!</h1>
-      <a class="login-link" href="/.auth/login/aad?post_login_redirect_uri=https://black-mud-0de639a1e.4.azurestaticapps.net/authenticated">
+      <h1 class="landing-header">Welcome to the Barlean's Portal</h1>
+      <a class="login-link" href="/.auth/login/aad?post_login_redirect_uri=https://black-mud-0de639a1e.4.azurestaticapps.net/home">
         <span>&gt; </span>
         <span class="login-link-text">Sign in</span>
       </a>
@@ -30,18 +30,7 @@
     </div>
     <hr>
 
-    <pre></pre>
-    <script>
-        async function getUserInfo() {
-            const response = await fetch('/.auth/me');
-            const user = await response.json();
-            const pre = document.querySelector('pre');
-            pre.textContent = JSON.stringify(user, null, 2);
-        }
-
-        getUserInfo();
-    </script>
-
+    
     -->
 </body>
 
