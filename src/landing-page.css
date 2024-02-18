@@ -8,17 +8,17 @@ body {
     justify-content: center; /* horizontal */
 }
 
-.landing-container > h1 {
+.landing-header {
     font-size: 6em;
 }
 
-.landing-container > a {
+.login-link {
     font-size: 3em;
     text-decoration: none;
     color: black;
     transition: transform 1s;
 }
 
-.landing-container > a:hover {
+.login-link:hover {
     transform: translate(20px, 0px);
 }
