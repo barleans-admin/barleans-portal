@@ -29,5 +29,9 @@ body {
 }
 
 .login-link:hover .login-link-text {
-    transform: translateX(40px);
+    transform: translateX(80px);
+}
+
+.login-link:active .login-link-text {
+    transform: translateX(200vw);
 }
