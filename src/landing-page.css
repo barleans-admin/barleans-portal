@@ -8,11 +8,17 @@ body {
     justify-content: center; /* horizontal */
 }
 
+.landing-container {
+    margin: 20px;
+}
+
 .landing-header {
-    font-size: 6em;
+    font-size: 4em;
+    font-style: italic;
 }
 
 .login-link {
+    margin-left: 40px;
     font-size: 3em;
     text-decoration: none;
     color: black;
