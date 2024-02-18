@@ -13,18 +13,21 @@ body {
 }
 
 .landing-header {
-    font-size: 4em;
-    font-style: italic;
+    font-size: 5em;
 }
 
 .login-link {
-    margin-left: 40px;
+    margin-left: 3em;
     font-size: 3em;
     text-decoration: none;
     color: black;
+}
+
+.login-link-text {
+    font-style: italic;
     transition: transform 1s;
 }
 
-.login-link:hover {
-    transform: translate(20px, 0px);
+.login-link:hover .login-link-text {
+    transform: translate(40px, 0px);
 }
