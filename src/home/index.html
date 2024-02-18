@@ -12,8 +12,7 @@
             const user = await response.json();
             const welcomeElement = document.getElementById('welcome-message');
 
-            const userObj = JSON.parse(user);
-            welcomeElement.textContent = "Welcome, " + userObj.clientPrincipal.userDetails + "!";
+            welcomeElement.textContent = "Welcome, " + user.clientPrincipal.userDetails + "!";
         }
 
         getUserInfo();
