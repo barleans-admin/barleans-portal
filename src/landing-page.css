@@ -1,17 +1,19 @@
 body {
+    width: 50vw;
+    height: 50vh;
     display: flex;
-}
-
-.landing-container {
-    margin: auto;
+    align-items: center; /* vertical */
+    justify-content: center; /* horizontal */
 }
 
 .landing-container > h1 {
-    font-size: 3em;
+    font-size: 6em;
 }
 
 .landing-container > a {
-    font-size: 1.5em;
+    font-size: 3em;
+    text-decoration: none;
+    color: black;
     transition: transform 1s;
 }
 
