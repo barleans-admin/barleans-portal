@@ -1,6 +1,8 @@
 body {
-    width: 50vw;
-    height: 50vh;
+    width: auto;
+    height: auto;
+    margin: auto;
+
     display: flex;
     align-items: center; /* vertical */
     justify-content: center; /* horizontal */
