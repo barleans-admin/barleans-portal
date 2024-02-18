@@ -1,7 +1,7 @@
 body {
     width: auto;
     height: auto;
-    margin: auto;
+    margin: 0 auto;
 
     display: flex;
     align-items: center; /* vertical */
@@ -18,7 +18,7 @@ body {
 
 .login-link {
     color: black;
-    font-size: 5em;
+    font-size: 3em;
     text-decoration: none;
 }
 
