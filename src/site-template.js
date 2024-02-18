@@ -8,7 +8,7 @@ function renderSiteTemplate() {
         navElement.innerHTML = `
             <a href="/home/">Home</a>
             <a href="/make-a-request/">Make a Request</a>
-            <a href="/my-requests/">My Requests</a>
+            <a href="/requests/">Requests</a>
         `;
     }
 }

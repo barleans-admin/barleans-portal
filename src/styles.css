@@ -24,7 +24,8 @@ nav, main {
 nav {
   display: flex;
   gap: 24px;
-  margin-top: 24px;
+  height: 60;
+  align-items: center; /* vertical */
 }
 
 nav a {
