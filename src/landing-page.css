@@ -1,0 +1,36 @@
+landing-box {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+
+landing-box > h1 {
+    margin: auto;
+    text-align: center;
+    font-size: 3.5em;
+}
+
+landing-box > h2 {
+    margin: auto;
+    text-align: center;
+    font-size: 1em;
+}
+
+landing-box > a {
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: #cc420e;
+
+    transition: background-color .5s;
+}
+
+landing-box > a:hover {
+    background-color: #bc320e;
+}
+
+landing-box > a:active {
+    background-color: #cc420e;
+}
