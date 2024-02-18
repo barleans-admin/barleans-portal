@@ -16,7 +16,7 @@ html, body {
   background-color: white;
 }
 
-body {
+nav, main {
   width: 60vw;
 }
 
