@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Home | Barlean's Portal</title>
 </head>
 <body>
-    <pre></pre>
+    <nav></nav>
+    <h1 id="welcome-message"></h1>
+
     <script>
         async function getUserInfo() {
             const response = await fetch('/.auth/me');
             const user = await response.json();
-            const pre = document.querySelector('pre');
-            pre.textContent = JSON.stringify(user, null, 2);
+            const welcomeElement = document.getElementById('welcome-message');
+
+            const userObj = JSON.parse(user);
+            welcomeElement.textContent = "Welcome, " + userObj.clientPrincipal.userDetails + "!";
         }
 
         getUserInfo();

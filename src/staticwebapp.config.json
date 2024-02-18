@@ -1,11 +1,15 @@
 {
     "routes": [
         {
-            "route": "/admin/*",
-            "allowedRoles": [ "admin" ]
+            "route": "/home/*",
+            "allowedRoles": [ "authenticated" ]
         },
         {
-            "route": "/authenticated/*",
+            "route": "/make-a-request/*",
+            "allowedRoles": [ "authenticated" ]
+        },
+        {
+            "route": "/my-requests/*",
             "allowedRoles": [ "authenticated" ]
         }
     ],
