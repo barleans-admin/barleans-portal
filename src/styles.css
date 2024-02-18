@@ -18,6 +18,7 @@ html, body {
 
 nav, main {
   width: 60vw;
+  margin: auto;
 }
 
 nav {
