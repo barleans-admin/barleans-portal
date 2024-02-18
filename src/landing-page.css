@@ -1,36 +1,20 @@
-.landing-box {
+body {
+    display: flex;
+}
+
+.landing-container {
     margin: auto;
-    width: 50%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: lightgrey;
 }
 
-.landing-box > h1 {
-    margin: auto;
-    text-align: center;
-    font-size: 3.5em;
+.landing-container > h1 {
+    font-size: 3em;
 }
 
-.landing-box > h2 {
-    margin: auto;
-    text-align: center;
-    font-size: 1em;
+.landing-container > a {
+    font-size: 1.5em;
+    transition: transform 1s;
 }
 
-.landing-box > a {
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    background-color: #cc420e;
-
-    transition: background-color .5s;
-}
-
-.landing-box > a:hover {
-    background-color: #bc320e;
-}
-
-.landing-box > a:active {
-    background-color: #cc420e;
+.landing-container > a:hover {
+    transform: translate(20px, 0px);
 }
