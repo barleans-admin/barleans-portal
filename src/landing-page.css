@@ -1,4 +1,4 @@
-landing-box {
+.landing-box {
     margin: auto;
     width: 50%;
     padding: 20px;
@@ -6,19 +6,19 @@ landing-box {
     background-color: lightgrey;
 }
 
-landing-box > h1 {
+.landing-box > h1 {
     margin: auto;
     text-align: center;
     font-size: 3.5em;
 }
 
-landing-box > h2 {
+.landing-box > h2 {
     margin: auto;
     text-align: center;
     font-size: 1em;
 }
 
-landing-box > a {
+.landing-box > a {
     padding: 10px;
     border-radius: 10px;
     color: white;
@@ -27,10 +27,10 @@ landing-box > a {
     transition: background-color .5s;
 }
 
-landing-box > a:hover {
+.landing-box > a:hover {
     background-color: #bc320e;
 }
 
-landing-box > a:active {
+.landing-box > a:active {
     background-color: #cc420e;
 }
