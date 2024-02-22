@@ -1,11 +1,90 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>My Requests | Barlean's Portal</title>
+    <title>Requests | Barlean's Portal</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css">
+    <script src="/site-template.js" type="module" defer></script>
 </head>
+
 <body>
     <nav></nav>
     <main>
-        <h1>My Requests</h1>
-        <p>Here can be found a list of your requests!</p>
+        <div class="request-header">
+            <h1>Requests: Conner Moulaison</h1>
+            <button type="button">Create Request</button>
+        </div>
+
+        <div class="request-legend">
+            <div>Title</div>
+            <div>Requester</div>
+            <div>Urgency</div>
+            <div>Update Due</div>
+        </div>
+        <div class="request-list">
+            
+        </div>
     </main>
+
+    <script type="module">
+        import { displayNameFromUserID } from "../common.js";
+        import { capitalize } from "../common.js";
+
+        async function update_request_list() {
+            const query = `
+                {
+                    requests {
+                        items {
+                            id
+                            title
+                            dateCreated
+                            updateDueDate
+                            updatePaceInDays
+                            completionDueDate
+                            requestee
+                            privacy
+                            urgency
+                            requester
+                            includedUsers
+                            requestType
+                        }
+                    }
+                }`;
+                
+            const endpoint = "/data-api/graphql";
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query: query })
+            });
+            const result = await response.json();
+
+            var listElement = document.querySelector(".request-list");
+            result.data.requests.items.forEach((item) => {
+                var itemElement = document.createElement("div");
+                itemElement.classList = "request-element";
+                listElement.appendChild(itemElement);
+
+                var titleElement = document.createElement("div");
+                titleElement.innerHTML = item.title;
+                itemElement.appendChild(titleElement);
+
+                var requesterElement = document.createElement("div");
+                requesterElement.innerHTML = displayNameFromUserID(item.requester);
+                itemElement.appendChild(requesterElement);
+
+                var urgencyElement = document.createElement("div");
+                urgencyElement.innerHTML = capitalize(item.urgency);
+                itemElement.appendChild(urgencyElement);
+
+                var updateDueDateElement = document.createElement("div");
+                updateDueDateElement.innerHTML = new Date(item.updateDueDate).toLocaleDateString();
+                itemElement.appendChild(updateDueDateElement);
+            });
+        }
+
+        update_request_list();
+    </script>
 </body>
+
+</html>

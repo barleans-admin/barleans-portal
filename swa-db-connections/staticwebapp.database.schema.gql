@@ -1,0 +1,14 @@
+type Request @model {
+  id: ID
+  title: String
+  dateCreated: String
+  updateDueDate: String
+  updatePaceInDays: String
+  completionDueDate: String
+  requestee: String
+  privacy: String
+  urgency: String
+  requester: String
+  includedUsers: [String]
+  requestType: String
+}

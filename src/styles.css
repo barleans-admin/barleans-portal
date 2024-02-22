@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 * {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 300;
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
@@ -17,22 +18,141 @@ html, body {
 }
 
 nav, main {
-  max-width: 820px;
-  margin: auto;
+  max-width: 1100px;
+  margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
 }
 
 nav {
   display: flex;
-  gap: 24px;
-  height: 60px;
+  height: 80px;
+  justify-content: space-between;
   align-items: center; /* vertical */
 }
 
-nav a {
-  text-transform: uppercase;
-  text-decoration: none;
-  color: black;
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
   font-weight: 600;
+}
+
+.nav-links a {
+  color: grey;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+nav a:hover {
+  color: black;
+}
+
+.nav-search input {
+  padding-left: 12px;
+  height: 30px;
+  width: 200px;
+
+  border-radius: 15px;
+  border: 1px solid grey;
+
+  color: grey;
+
+  transition: all 0.25s;
+}
+
+.nav-search input:hover {
+  border-color: black;
+}
+
+.nav-search input:focus {
+  width: 250px;
+}
+
+.nav-search::after {
+  content: url("../svg/search.svg");
+  position: absolute;
+  transform: translate(-32px, 4px);
+}
+
+.nav-user {
+  color: grey;
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.request-header button {
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0 20px;
+
+  transition: .15s all;
+}
+
+.request-header button:hover {
+  color: white;
+  background-color: black;
+  padding: 0 30px;
+  cursor: pointer;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.request-legend, .request-element {
+  display: grid;
+  grid-template-columns: 1fr 18ch 10ch 10ch;
+  padding: 0 12px;
+}
+
+.request-legend div {
+  padding-bottom: 8px;
+  color: grey;
+  font-style: italic;
+}
+
+.request-element div, .request-legend div {
+  text-align: center;
+}
+
+.request-element div:first-child, .request-legend div:first-child {
+  text-align: left;
+}
+
+.request-element div:last-child, .request-legend div:last-child {
+  text-align: right;
+}
+
+.request-element {
+  height: 60px;
+  border-bottom: 1px solid lightgrey;
+
+  justify-items: stretch;
+  align-items: center;
+
+  transition: background-color 0.25s;
+}
+
+.request-element:first-child {
+  border-top: 1px solid lightgrey;
+}
+
+.request-element:hover {
+  background-color: lightgrey;
+  cursor: pointer;
 }
