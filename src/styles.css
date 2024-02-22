@@ -116,7 +116,7 @@ h1 {
 
 .request-legend, .request-element {
   display: grid;
-  grid-template-columns: 1fr 18ch 10ch 10ch;
+  grid-template-columns: 1fr 16ch 18ch 10ch 10ch;
   padding: 0 12px;
 }
 
@@ -139,7 +139,7 @@ h1 {
 }
 
 .request-element {
-  height: 60px;
+  height: 50px;
   border-bottom: 1px solid lightgrey;
 
   justify-items: stretch;

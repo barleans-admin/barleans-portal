@@ -17,6 +17,7 @@
 
         <div class="request-legend">
             <div>Title</div>
+            <div>Type of Request</div>
             <div>Requester</div>
             <div>Urgency</div>
             <div>Update Due</div>
@@ -68,6 +69,10 @@
                 var titleElement = document.createElement("div");
                 titleElement.innerHTML = item.title;
                 itemElement.appendChild(titleElement);
+
+                var typeElement = document.createElement("div");
+                typeElement.innerHTML = capitalize(item.requestType);
+                itemElement.appendChild(typeElement);
 
                 var requesterElement = document.createElement("div");
                 requesterElement.innerHTML = displayNameFromUserID(item.requester);
