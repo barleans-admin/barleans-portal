@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Request Details | Barlean's Portal</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css">
+    <script src="/site-template.js" type="module" defer></script>
+</head>
+
+<body>
+    <nav></nav>
+
+    <main>
+        <a class="back-link" onclick="history.back()">< Back to request list</a>
+        <div class="request-detail-header">
+            <h1></h1>
+        </div>
+
+        <div class="header-detail-sub-bar"></div>
+
+        <div class="request-body">
+            <div class="request-content"></div>
+            <div class="request-updates"></div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { capitalize, displayNameFromUserID } from "/common.js";
+
+        async function loadRequest() {
+            const params = new URLSearchParams(window.location.search);
+            const headerElement = document.querySelector('h1');
+
+            if(!params.has('id')) {
+                headerElement.innerHTML = 'Error: no ID found';
+                return;
+            }
+            
+            const id = params.get('id');
+
+            const query = `
+                {
+                    requests(filter: { id: { eq: ${id} } }) {
+                        items {
+                            id
+                            title
+                            dateCreated
+                            updateDueDate
+                            updatePaceInDays
+                            completionDueDate
+                            requestee
+                            privacy
+                            urgency
+                            requester
+                            includedUsers
+                            requestType
+                        }
+                    }
+                }`;
+
+            const endpoint = "/data-api/graphql";
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify( {query: query} ),
+            });
+            const result = await response.json();
+            const item = result.data.requests.items[0];
+
+            if(item == null) {
+                headerElement.innerHTML = "Request not found!"
+                const infoElement = document.createElement("p");
+                infoElement.innerHTML = "There is no request with identifier #" + id + " in the database. Please consult IT for help.";
+                infoElement.style = "color: grey;";
+                document.querySelector('main').appendChild(infoElement);
+                return;
+            }            
+
+            headerElement.innerHTML = item.title;
+
+            const detailSubBar = document.querySelector('.header-detail-sub-bar');
+            detailSubBar.innerHTML = `
+                <div class='header-detail-sub'>
+                    <div>${capitalize(item.requestType)} Request<span class="weak"> from </span>${displayNameFromUserID(item.requester)}<span class="weak"> to </span>${displayNameFromUserID(item.requestee)}</div>
+                </div>
+                <div class='header-detail-sub'>
+                    <div>ID No.</div>
+                    <div>${item.id}</div>
+                </div>
+                <div class='header-detail-sub'>
+                    <div>Created</div>
+                    <div>${new Date(item.dateCreated).toLocaleDateString()}</div>
+                </div>
+                <div class='header-detail-sub'>
+                    <div>Due</div>
+                    <div>${new Date(item.completionDueDate).toLocaleDateString()}</div>
+                </div>
+                <div class='header-detail-sub'>
+                    <div>Urgency</div>
+                    <div>${capitalize(item.urgency)}</div>
+                </div>
+                <div class='header-detail-sub'>
+                    <div>Privacy</div>
+                    <div>${capitalize(item.privacy)}</div>
+                </div>
+            `
+
+            loadRequestUpdates(id);
+
+            switch(item.requestType) {
+                case 'general':
+                    loadGeneralRequest(id);
+            }
+        }
+
+        async function loadRequestUpdates(id) {
+            const query = `
+                {
+                    requestUpdates(orderBy: { dateCreated: DESC }, filter: { requestID: { eq: ${id} } }) {
+                        items {
+                            id
+                            requestID
+                            title
+                            message
+                            dateCreated
+                        }
+                    }
+                }`;
+
+            const endpoint = "/data-api/graphql";
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify( {query: query} ),
+            })
+            const result = await response.json();
+            const updates = result.data.requestUpdates.items;
+
+            const updateList = document.querySelector('.request-updates');
+            updateList.innerHTML = `
+                <h2>Updates</h2>
+                <div class="submit-comment-area">
+                    <textarea type="text" placeholder="Write a comment..."></textarea>
+                    <button class="action-button" disabled>Submit</button>
+                </div>
+            `
+
+            document.querySelector('.submit-comment-area textarea').addEventListener("input", (e) => {
+                const button = document.querySelector('.submit-comment-area button');
+                if(e.currentTarget.value == "") button.disabled = true;
+                else button.disabled = false;
+            });
+
+            document.querySelector('.submit-comment-area button').addEventListener("click", (e) => {
+                console.log("Promise Start");
+                postComment(id).then(() => {
+                    console.log("Promise returned");
+                    enableComments();
+                });
+            });
+
+            updates.forEach((update) => {
+                const updateContainer = document.createElement("div");
+                updateContainer.classList = "request-update-container";
+                
+                const updateHeader = document.createElement("h3");
+                updateHeader.innerHTML = update.title;
+                updateContainer.appendChild(updateHeader);
+
+                const updateMessage = document.createElement("p");
+                updateMessage.innerHTML = update.message;
+                updateContainer.appendChild(updateMessage);
+
+                updateList.appendChild(updateContainer);
+            });
+        }
+
+        async function loadGeneralRequest(id) {
+            const query = `
+                {
+                    generalRequests(filter: { requestID: { eq: ${id} } }) {
+                        items {
+                            id
+                            requestID
+                            description
+                        }
+                    }
+                }`;
+            
+            const endpoint = "/data-api/graphql";
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify( {query: query} ),
+            });
+            const result = await response.json();
+            const data = result.data.generalRequests.items[0];
+
+            const content = document.querySelector(".request-content");
+            content.innerHTML = `
+                <h2>Description</h2>
+                <p>${data.description}</p>
+            `
+        }
+
+        function updateCommentSubmission() {
+            const commentTextArea = querySelector('.submit-comment-area textarea');
+            const commentSubmitButton = querySelector('.submit-comment-area button');
+            
+            if(commentTextArea.innerHTML == "") commentSubmitButton.disabled = true
+            else commentsubmitButton.disabled = false
+        }
+
+        async function postComment(id) {
+            return;
+
+            const textArea = document.querySelector('.submit-comment-area textarea');
+            const submitButton = document.querySelector('.submit-comment-area button');
+
+            textArea.enabled = false;
+            submitButton.enabled = false;
+
+            // Get iterated ID
+            {
+                const gql = `
+                    query {
+                        requestUpdates(limit: 1, order_) {
+                            
+                        }
+                    };`
+            }
+
+            const data = {
+                // Get next iteration of ID
+                // This can be done with:
+                /* 
+                query {
+                    table_name(limit: 1, order_by: {time: desc}) { 
+                        data 
+                        time
+                    }
+                }
+                */
+                // Then grab the first item. Iterate by 1 and that's your ID.
+                id: "0",
+                requestID: id,
+                // <name> commented
+                title: title,
+                // message
+                message: message,
+                // get date
+                dateCreated: dateCreated,
+            };
+
+            // Need to adapt this to our query
+            const gql = `
+                mutation update($id: ID!, $_partitionKeyValue: String!, $item: UpdatePersonInput!) {
+                updatePerson(id: $id, _partitionKeyValue: $_partitionKeyValue, item: $item) {
+                        id
+                        Name
+                    }
+                }`;
+
+            const query = {
+                query: gql,
+                variables: {
+                    id: id,
+                    _partitionKeyValue: id,
+                    item: data
+                } 
+            };
+
+            const endpoint = "/data-api/graphql";
+            const res = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(query)
+            });
+
+            const result = await res.json();
+        }
+
+        async function enableComments(id) {
+            const textArea = document.querySelector('.submit-comment-area textarea');
+            const submitButton = document.querySelector('.submit-comment-area button');
+
+            textArea.enabled = true;
+            textArea.value = "";
+            submitButton.enabled = false;
+
+            // Do this after we have actually included such stuff
+            //loadRequestUpdates(id);
+        }
+
+        loadRequest();
+    </script>
+</body>
+
+</html>

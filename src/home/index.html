@@ -10,20 +10,22 @@
 <body>
     <nav></nav>
     <main>
-        <h1 id="welcome-message"></h1>
+        <h1>Barlean's Employee Portal</h1>
+        <h2>IT Department</h2>
+        <div class="action-grid">
+            <a class="action-tile">
+                <div class="action-tile-text">Helpdesk</div>
+            </a>
+            <a class="action-tile action-tile-wip">
+                <div class="action-tile-text">Knowledge Base (Work in Progress)</div>
+            <a class="action-tile action-tile-wip">
+                <div class="action-tile-text">FAQ (Work in Progress)</div>
+            </a>
+            <a class="action-tile action-tile-wip">
+                <div class="action-tile-text">Sage Request (Work in Progress)</div>
+            </a>
+        </div>
     </main>
-
-    <script>
-        async function getUserInfo() {
-            const response = await fetch('/.auth/me');
-            const user = await response.json();
-            const welcomeElement = document.getElementById('welcome-message');
-
-            welcomeElement.textContent = "Welcome, " + user.clientPrincipal.userDetails + "!";
-        }
-
-        getUserInfo();
-    </script>
 </body>
 
 </html>

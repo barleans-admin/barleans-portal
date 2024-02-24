@@ -20,7 +20,6 @@ function renderSiteTemplate() {
         navElement.innerHTML = `
             <div class="nav-links">
                 <a href="/home/">Home</a>
-                <a href="/make-a-request/">Make a Request</a>
                 <a href="/requests/">Requests</a>
             </div>
             <div class="nav-right">

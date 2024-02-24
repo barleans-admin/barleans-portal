@@ -53,21 +53,27 @@ nav a:hover {
   color: black;
 }
 
-.nav-search input {
+input, textarea {
   padding-left: 12px;
   height: 30px;
-  width: 200px;
-
-  border-radius: 15px;
-  border: 1px solid grey;
-
+  border-radius: 20px;
+  border: 1px solid lightgrey;
+  font-size: 1rem;
   color: grey;
-
   transition: all 0.25s;
 }
 
-.nav-search input:hover {
-  border-color: black;
+textarea {
+  resize: none;
+  padding-top: 15px;
+}
+
+input:hover, textarea:hover {
+  border-color: grey;
+}
+
+.nav-search input {
+  width: 200px;
 }
 
 .nav-search input:focus {
@@ -84,18 +90,57 @@ nav a:hover {
   color: grey;
 }
 
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.action-tile {
+  aspect-ratio: 2/1; 
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+
+  transition: all 0.15s;
+}
+
+.action-tile:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+.action-tile-wip {
+  color: grey;
+  border-color: grey;
+}
+
+.action-tile-wip:hover {
+  cursor: unset;
+  background-color: white;
+  color: grey; 
+}
+
 .request-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
 }
 
-.request-header button {
+.action-button {
   height: 40px;
   border: 1px solid black;
   border-radius: 20px;
-  background-color: white;
   color: black;
+  background-color: white;
   font-size: 1rem;
   font-weight: 700;
   padding: 0 20px;
@@ -103,20 +148,80 @@ nav a:hover {
   transition: .15s all;
 }
 
-.request-header button:hover {
+.action-button:hover:enabled {
   color: white;
   background-color: black;
   padding: 0 30px;
   cursor: pointer;
 }
 
+.action-button:disabled {
+  color: grey;
+  border-color: grey;
+}
+
 h1 {
   font-weight: 700;
+  margin: 10px 0;
+}
+
+h2 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+h3 {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+p {
+  margin: 10px 0;
+}
+
+.request-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.request-content {
+  padding-right: 36px;
+}
+
+.request-updates {
+  padding-left: 36px;
+  border-left: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+}
+
+.request-updates textarea:focus, .request-updates textarea:not(:placeholder-shown) {
+  height: 100px;
+}
+
+.submit-comment-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.submit-comment-area button {
+  align-self: flex-end;
+}
+
+.request-update-container {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 18px;
+  padding-top: 18px;
+}
+
+.request-update-container:last-child {
+  border-bottom: none;
 }
 
 .request-legend, .request-element {
   display: grid;
-  grid-template-columns: 1fr 16ch 18ch 10ch 10ch;
+  grid-template-columns: 1fr 16ch 10ch 18ch 10ch;
   padding: 0 12px;
 }
 
@@ -145,6 +250,9 @@ h1 {
   justify-items: stretch;
   align-items: center;
 
+  text-decoration: none;
+  color: black;
+
   transition: background-color 0.25s;
 }
 
@@ -155,4 +263,56 @@ h1 {
 .request-element:hover {
   background-color: lightgrey;
   cursor: pointer;
+}
+
+.header-detail-sub-bar {
+  color: grey;
+  font-size: small; 
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.header-detail-sub {
+  display: flex;
+  padding: 0 12px;
+  border-left: 1px solid lightgrey;
+}
+
+.header-detail-sub:first-child {
+  font-weight: 700;
+  padding-left: 0;
+  border-left: none;
+}
+
+.header-detail-sub div {
+  padding: 0 4px;
+}
+
+.header-detail-sub div:first-child {
+  padding: 0;
+}
+
+.header-detail-sub div:last-child {
+  font-weight: 700;
+}
+
+.back-link {
+  cursor: pointer;
+  color: grey;
+  font-size: small;
+  font-weight: bold;
+
+  transition: color 0.25s;
+}
+
+.back-link:hover {
+  color: black;
+}
+
+.weak {
+  font-weight: normal !important;
+}
+
+em {
+  font-style: italic;
 }

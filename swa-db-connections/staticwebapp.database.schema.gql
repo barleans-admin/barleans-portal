@@ -12,3 +12,17 @@ type Request @model {
   includedUsers: [String]
   requestType: String
 }
+
+type GeneralRequest @model {
+  id: ID
+  requestID: ID
+  description: String
+}
+
+type RequestUpdate @model {
+  id: ID
+  requestID: ID
+  title: String
+  message: String
+  dateCreated: String
+}

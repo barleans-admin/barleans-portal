@@ -9,3 +9,7 @@ export function capitalize(s) {
     if(s.length < 2) return s.toUpperCase();
     return s[0].toUpperCase() + s.slice(1);
 }
+
+export function query(query) {
+    
+}

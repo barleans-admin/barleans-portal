@@ -12,14 +12,14 @@
     <main>
         <div class="request-header">
             <h1>Requests: Conner Moulaison</h1>
-            <button type="button">Create Request</button>
+            <button type="button" class="action-button">Create Request</button>
         </div>
 
         <div class="request-legend">
             <div>Title</div>
             <div>Type of Request</div>
-            <div>Requester</div>
             <div>Urgency</div>
+            <div>Requester</div>
             <div>Update Due</div>
         </div>
         <div class="request-list">
@@ -62,7 +62,7 @@
 
             var listElement = document.querySelector(".request-list");
             result.data.requests.items.forEach((item) => {
-                var itemElement = document.createElement("div");
+                var itemElement = document.createElement("a");
                 itemElement.classList = "request-element";
                 listElement.appendChild(itemElement);
 
@@ -74,17 +74,19 @@
                 typeElement.innerHTML = capitalize(item.requestType);
                 itemElement.appendChild(typeElement);
 
-                var requesterElement = document.createElement("div");
-                requesterElement.innerHTML = displayNameFromUserID(item.requester);
-                itemElement.appendChild(requesterElement);
-
                 var urgencyElement = document.createElement("div");
                 urgencyElement.innerHTML = capitalize(item.urgency);
                 itemElement.appendChild(urgencyElement);
 
+                var requesterElement = document.createElement("div");
+                requesterElement.innerHTML = displayNameFromUserID(item.requester);
+                itemElement.appendChild(requesterElement);
+
                 var updateDueDateElement = document.createElement("div");
                 updateDueDateElement.innerHTML = new Date(item.updateDueDate).toLocaleDateString();
                 itemElement.appendChild(updateDueDateElement);
+
+                itemElement.href = "./request-details.html?id=" + item.id;
             });
         }
 
